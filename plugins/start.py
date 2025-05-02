@@ -138,15 +138,17 @@ async def start_command(client: Client, message: Message):
                 )
                 keyboard = (
     InlineKeyboardMarkup([
-        [InlineKeyboardButton("♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ", url=reload_url)],
-        [InlineKeyboardButton("✖ Close ✖", callback_data="close")]
+        [  # one row
+            InlineKeyboardButton("♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ", url=reload_url),
+            InlineKeyboardButton("✖ Close ✖", callback_data="close")
+        ]
     ])
     if reload_url else None
                 )
 
                 await notification_msg.edit(
                     f"<b>ᴀʀᴀʀᴀ, ᴘʀᴇᴠɪᴏᴜꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡᴀꜱ ᴅᴇʟᴇᴛᴇᴅ 🗑.\n"
-        f"Iғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇs ᴀɢᴀɪɴ, ᴛʜᴇɴ ᴄʟɪᴄᴋ: <a href='{reload_url}'>[♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ]</a>ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴇʟsᴇ ᴄʟᴏsᴇ ᴛʜɪs ᴍᴇssᴀɢᴇ.</b>",
+        f"Iғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇs ᴀɢᴀɪɴ, ᴛʜᴇɴ ᴄʟɪᴄᴋ: <a href='{reload_url}'>♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴇʟsᴇ ᴄʟᴏsᴇ ᴛʜɪs ᴍᴇssᴀɢᴇ.</b>",
                     reply_markup=keyboard
                 )
             except Exception as e:
