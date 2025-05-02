@@ -136,15 +136,17 @@ async def start_command(client: Client, message: Message):
                     if message.command and len(message.command) > 1
                     else None
                 )
-                keyboard = InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ", url=reload_url)]]
-                ) if reload_url else None
+                if reload_url:
+    keyboard = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("✖️ Close", callback_data="close_data")]]
+    )
 
-                await notification_msg.edit(
-                    "<b>ᴀʀᴀʀᴀ ᴘʀᴇᴠɪᴏᴜꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡᴀꜱ ᴅᴇʟᴇᴛᴇᴅ 🗑
-ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇꜱ ᴀɢᴀɪɴ, ᴛʜᴇɴ ᴄʟɪᴄᴋ: [♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ] ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴇʟꜱᴇ ᴄʟᴏꜱᴇ ᴛʜɪꜱ ᴍᴇꜱꜱᴀɢᴇ.</b>",
-                    reply_markup=keyboard
-                )
+    await notification_msg.edit(
+        f"<b>ᴀʀᴀʀᴀ, ᴘʀᴇᴠɪᴏᴜꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡᴀꜱ ᴅᴇʟᴇᴛᴇᴅ 🗑.\n"
+        f"ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇꜱ ᴀɢᴀɪɴ, ᴛᴀᴘ ᴛʜɪꜱ: <a href='{reload_url}'>♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a></b>",
+        reply_markup=keyboard,
+        parse_mode=ParseMode.HTML
+    )
             except Exception as e:
                 print(f"Error updating notification with 'Get File Again' button: {e}")
     else:
