@@ -147,7 +147,7 @@ async def start_command(client: Client, message: Message):
         f"ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇꜱ ᴀɢᴀɪɴ, ᴛᴀᴘ ᴛʜɪꜱ: <a href='{reload_url}'>♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a></b>",
         reply_markup=keyboard,
         parse_mode=ParseMode.HTML
-    )
+    
             except Exception as e:
                 print(f"Error updating notification with 'Get File Again' button: {e}")
     else:
