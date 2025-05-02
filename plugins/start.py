@@ -137,12 +137,14 @@ async def start_command(client: Client, message: Message):
                     else None
                 )
                 keyboard = InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ", url=reload_url)]]
-                ) if reload_url else None
+                    [InlineKeyboardButton("♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ", url=reload_url)],
+        [InlineKeyboardButton("✖ Close", callback_data="close")]
+    ]
+) if reload_url else None
 
                 await notification_msg.edit(
                     f"<b>ᴀʀᴀʀᴀ, ᴘʀᴇᴠɪᴏᴜꜱ ᴍᴇꜱꜱᴀɢᴇ ᴡᴀꜱ ᴅᴇʟᴇᴛᴇᴅ 🗑.\n"
-        f"ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇꜱ ᴀɢᴀɪɴ, ᴛᴀᴘ ᴛʜɪꜱ: <a href='{reload_url}'>♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ</a></b>",
+        f"Iғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇs ᴀɢᴀɪɴ, ᴛʜᴇɴ ᴄʟɪᴄᴋ: <a href='{reload_url}'>[♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ]</a>ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴇʟsᴇ ᴄʟᴏsᴇ ᴛʜɪs ᴍᴇssᴀɢᴇ.</b>",
                     reply_markup=keyboard
                 )
             except Exception as e:
@@ -274,3 +276,7 @@ async def not_joined(client: Client, message: Message):
 async def bcmd(bot: Bot, message: Message):        
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("• ᴄʟᴏsᴇ •", callback_data = "close")]])
     await message.reply(text=CMD_TXT, reply_markup = reply_markup, quote= True) 
+@app.on_callback_query()
+async def close_button_handler(client, callback_query):
+    if callback_query.data == "close":
+        await callback_query.message.delete()    
