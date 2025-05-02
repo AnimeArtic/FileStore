@@ -276,3 +276,10 @@ async def not_joined(client: Client, message: Message):
 async def bcmd(bot: Bot, message: Message):        
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("• ᴄʟᴏsᴇ •", callback_data = "close")]])
     await message.reply(text=CMD_TXT, reply_markup = reply_markup, quote= True)
+@Bot.on_callback_query()
+async def close_callback(_, query: CallbackQuery):
+    if query.data == "close":
+        try:
+            await query.message.delete()
+        except Exception as e:
+            print(f"Error deleting message: {e}")
