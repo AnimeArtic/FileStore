@@ -138,7 +138,7 @@ async def start_command(client: Client, message: Message):
                 )
                 keyboard = InlineKeyboardMarkup(
                     [InlineKeyboardButton("♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ", url=reload_url)],
-        [InlineKeyboardButton("✖ Close", callback_data="close")]
+        [InlineKeyboardButton("✖ Close ✖", callback_data="close")]
     ]
 ) if reload_url else None
 
